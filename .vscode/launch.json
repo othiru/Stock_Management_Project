@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Django",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/stockVenv/src/manage.py",
+      "args": ["runserver", "5000"],
+      "django": true,
+      "justMyCode": true
+    }
+  ]
+}

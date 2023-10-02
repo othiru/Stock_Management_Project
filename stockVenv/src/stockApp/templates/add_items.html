@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+	{{ addUpdateItemTitle }}
+{% endblock %}
+
+{% block main %}
+	<main role="main" class="mainDiv container">
+		<h1>{{ addUpdateItemTitle }}</h1>
+		<form method="POST" action="">
+			{% csrf_token %}
+			{{ form|crispy }}
+			<input class="addItemsBtn" type="submit" value="{{ addUpdateItemBtn }}"/>
+		</form>
+	</main>
+{% endblock %}

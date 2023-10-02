@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	ALL ITEMS LIST
+{% endblock %}
+
+{% block main %}
+    <main role="main" class="mainDiv container">
+        {% if messages %}          
+            {% for message in messages %}
+                {% if message.tags %}
+                    <div class="{{ message.tags }} alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <h1>LIST OF ALL ITEMS</h1>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input class="btn btn-info mb-3" type="submit" value="Search"/>          
+        </form>
+        <br>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="align-middle">COUNT</th>
+                        <th class="align-middle">CATEGORY</th>
+                        <th class="align-middle">ITEM NAME</th>
+                        <th class="align-middle">QUANTITY IN STORE</th>
+                        <th class="align-middle">REORDER LEVEL</th>
+                        <th class="align-middle">TIMESTAMP</th>
+                        <th class="align-middle">LAST UPDATED</th>
+                        <th class="align-middle">DELETE</th>
+                    </tr>
+                </thead>
+                {% for instance in queryset %}
+                    <tr>
+                        <td class="align-middle">{{forloop.counter}}</td>
+                        <td class="align-middle">{{instance.category}}</td>
+                        <td class="align-middle"><a class="itemUpdate" href="{% url 'update_items' instance.id %}">{{instance.item_name}}</a></td>
+                        <td class="align-middle">
+                            {% if instance.quantity <= instance.reorder_level %}
+                                <div class="bg-warning">
+                                    <a class="itemUpdate" href="{% url 'stock_details' instance.id %}">{{instance.quantity}}</a>
+                                </div>
+                            {% else %}
+                                <a class="itemUpdate" href="{% url 'stock_details' instance.id %}">{{instance.quantity}}</a>
+                            {% endif %}
+                        </td>
+                        <td class="align-middle"><a class="itemUpdate" href="{% url 'reorder_level_details' instance.id %}">{{instance.reorder_level}}</a></td>
+                        <td class="align-middle">{{instance.timestamp}}</td>
+                        <td class="align-middle">{{instance.last_updated}}</td>
+                        <td class="align-middle"><a class="text-danger" href="{% url 'delete_items' instance.id %}"><i class="fa-solid fa-trash-can" style="color: #950000;"></i></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+{% endblock %}

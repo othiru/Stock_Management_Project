@@ -1,0 +1,160 @@
+body
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* This ensures the body takes up at least the full height of the viewport */
+    margin: 0;
+    background-color: darkslategrey;
+}
+
+/* --------------- Add_items style --------------- */
+
+
+.mainDiv
+{
+    background-color: rgb(191, 212, 200);
+    padding: 20px;
+    display: flex;
+    flex-flow: nowrap column;
+    justify-content: center;
+    box-shadow: 0px 3px 30px;
+}
+.mainDiv h1
+{
+    color: darkslategrey;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.addItemsBtn
+{
+    border: 3px solid darkslategrey;
+    border-radius: 5px;
+    color: darkslategrey;
+    background-color: white;
+    padding: 3px 10px;
+    font-weight: bold;
+}
+.addItemsBtn:hover
+{
+    background-color: darkslategrey;
+    color: white;
+}
+.addItemsBtn:focus
+{
+    outline: 4px solid rgb(149, 174, 160);
+}
+
+
+/* --------------- table style --------------- */
+
+.table
+{
+	text-align: center;
+	margin: auto;
+}
+
+.table tr:nth-child(odd)
+{
+	background:  rgb(149, 174, 160);
+}
+
+.table tr:nth-child(even)
+{
+	background:  rgb(168, 190, 178);
+}
+
+th
+{
+  background-color: darkslategrey;
+  color: white;
+}
+
+
+/* --------------- list_items style --------------- */
+.itemUpdate
+{
+    color: darkslategrey;
+    font-weight: bold;
+    
+}
+.itemUpdate:hover
+{
+    color: darkslategrey;
+}
+
+.success
+{
+    background-color: seagreen;
+    color: white;
+}
+
+/* --------------- delete_items style --------------- */
+.deleteDiv
+{
+    width: fit-content;
+}
+.dltBtn
+{
+    width: 90px;
+}
+
+
+/* --------------- pagination style old for list_history_pagination.html --------------- */
+/* .paginationColor
+{
+    color: darkslategrey;
+}
+.paginationColor:hover
+{
+    color: darkslategrey;
+    background: rgb(168, 190, 178);
+}
+.pagination .page-item.active .page-link
+{
+    color: darkslategrey;
+    background: rgb(168, 190, 178);
+    border-color: darkslategrey;
+    font-weight: bold;
+} */
+
+
+/* --------------- pagination style new for list_history.html --------------- */
+.paging-nav
+{
+    margin: 5px 0px;
+    text-align: right;
+    padding-top: 2px;
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+.paging-nav a
+{
+    text-decoration: none;
+    padding: 0px 10px;
+    border: 1px solid gainsboro;
+    background-color: white;
+    color: darkslategrey;
+}
+
+.paging-nav a:hover
+{
+    color: darkslategrey;
+    background: rgb(168, 190, 178);
+}
+
+.paging-nav .selected-page
+{
+    color: darkslategrey;
+    background: rgb(168, 190, 178);
+    border-color: darkslategrey;
+    font-weight: bold;
+}
+
+
+/* --------------- footer style --------------- */
+.footer
+{
+    color: white;
+    margin-top: auto;
+}

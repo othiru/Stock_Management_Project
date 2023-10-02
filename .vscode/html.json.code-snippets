@@ -1,0 +1,41 @@
+{
+	// Place your Stock_Management_Project workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+
+	"Stock Management Project: template extending base.html": {
+		"prefix": "stockManagementTemplate",
+		"body": [
+			"{% extends \"base.html\" %}",
+			"{% load static %}",	
+			"{% load crispy_forms_tags %}",
+			"$0",
+			"$0",
+			"{% block title %}",
+			"$0",
+			"{% endblock %}",
+			"$0",
+			"$0",
+			"{% block main %}",
+			"$0",
+			"{% endblock %}"
+		],
+	
+		"description": "Template that extends base.html"
+	},
+}
+

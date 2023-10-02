@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	ALL ITEMS HISTORY
+{% endblock %}
+
+{% block main %}
+    <main role="main" class="mainDiv container">
+        <h1>HISTORY OF ALL ITEMS</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input class="btn btn-info mb-3" type="submit" value="Search"/>          
+        </form>
+        <br>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="align-middle">COUNT</th>
+                        <th class="align-middle">ITEM ID</th>
+                        <th class="align-middle">CATEGORY</th>
+                        <th class="align-middle">ITEM NAME</th>
+                        <th class="align-middle">QUANTITY IN STORE</th>
+                        <th class="align-middle">ISSUE QUANTITY</th>
+                        <th class="align-middle">RECEIVE QUANTITY</th>
+                        <th class="align-middle">ISSUE BY</th>
+                        <th class="align-middle">RECEIVE BY</th>
+                        <th class="align-middle">LAST UPDATED</th>
+                    </tr>
+                </thead>
+                {% for instance in queryset %}
+                    <tr>
+                        <td class="align-middle">{{ forloop.counter }}</td>
+                        <td class="align-middle">{{instance.id}}</td>
+                        <td class="align-middle">{{instance.category}}</td>
+                        <td class="align-middle">{{instance.item_name}}</td>
+                        <td class="align-middle">{{instance.quantity}}</td>
+                        <td class="align-middle">{{instance.issue_quantity}}</td>
+                        <td class="align-middle">{{instance.receive_quantity}}</td>
+                        <td class="align-middle">{{instance.issue_by}}</td>
+                        <td class="align-middle">{{instance.receive_by}}</td>
+                        <td class="align-middle">{{instance.last_updated}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- Bootstrap Pagination -->  
+       
+        <nav aria-label="Page navigation">
+            <br>
+            <ul class="pagination justify-content-end">
+                {% if queryset.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link paginationColor" href="?page=1" aria-label="First">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link paginationColor" href="?page={{ queryset.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                
+                {% for i in queryset.paginator.page_range %}
+                    <li class="page-item {% if i == queryset.number %}active{% endif %}">
+                        <a class="page-link paginationColor" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                
+                {% if queryset.has_next %}
+                    <li class="page-item">
+                        <a class="page-link paginationColor" href="?page={{ queryset.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link paginationColor" href="?page={{ queryset.paginator.num_pages }}" aria-label="Last">
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </main>
+{% endblock %}

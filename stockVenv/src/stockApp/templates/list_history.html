@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	ALL ITEMS HISTORY
+{% endblock %}
+
+{% block main %}
+    <main role="main" class="mainDiv container">
+        <h1>HISTORY OF ALL ITEMS</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input class="btn btn-info mb-3" type="submit" value="Search"/>          
+        </form>
+        <br>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="align-middle">COUNT</th>
+                        <th class="align-middle">ITEM ID</th>
+                        <th class="align-middle">CATEGORY</th>
+                        <th class="align-middle">ITEM NAME</th>
+                        <th class="align-middle">QUANTITY IN STORE</th>
+                        <th class="align-middle">ISSUE QUANTITY</th>
+                        <th class="align-middle">RECEIVE QUANTITY</th>
+                        <th class="align-middle">ISSUE BY</th>
+                        <th class="align-middle">RECEIVE BY</th>
+                        <th class="align-middle">LAST UPDATED</th>
+                    </tr>
+                </thead>
+                {% for instance in queryset %}
+                    <tr>
+                        <td class="align-middle">{{forloop.counter}}</td>
+                        <td class="align-middle">{{instance.id}}</td>
+                        <td class="align-middle">{{instance.category}}</td>
+                        <td class="align-middle">{{instance.item_name}}</td>
+                        <td class="align-middle">{{instance.quantity}}</td>
+                        <td class="align-middle">{{instance.issue_quantity}}</td>
+                        <td class="align-middle">{{instance.receive_quantity}}</td>
+                        <td class="align-middle">{{instance.issue_by}}</td>
+                        <td class="align-middle">{{instance.receive_by}}</td>
+                        <td class="align-middle">{{instance.last_updated}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+{% endblock %}
